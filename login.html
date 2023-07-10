@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Login Page</h2>
+        <form id="login" method="get" action="login.html">
+            <div class="input-group">
+                <label for="Uname">User Name</label>
+                <input type="text" name="Uname" id="Uname" placeholder="Username">
+            </div>
+            <div class="input-group">
+                <label for="Pass">Password</label>
+                <input type="password" name="Pass" id="Pass" placeholder="Password">
+            </div>
+            <div class="input-group">
+                <input type="button" name="log" id="log" value="Log In">
+            </div>
+            <div class="input-group remember-forgot">
+                <input type="checkbox" id="check">
+                <label for="check">Remember me</label>
+            </div>
+            <a href="#">Forgot Password?</a>
+        </form>
+    </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" id="close">&times;</span>
+            <p id="popup-message"></p>
+        </div>
+    </div>
+
+    <script>
+        // Form validation function
+        function validateForm() {
+            var uname = document.getElementById("Uname").value;
+            var pass = document.getElementById("Pass").value;
+
+            if (uname.trim() === "" || pass.trim() === "") {
+                showPopup("Please fill in all fields.");
+                return false;
+            }
+        }
+
+        // Show popup with message
+        function showPopup(message) {
+            var popup = document.getElementById("popup");
+            var popupMessage = document.getElementById("popup-message");
+            popupMessage.textContent = message;
+            popup.style.display = "flex";
+        }
+
+        // Close popup
+        var closeBtn = document.getElementById("close");
+        closeBtn.addEventListener("click", function() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+        });
+
+        // Attach form validation to the login button
+        var loginButton = document.getElementById("log");
+        loginButton.addEventListener("click", validateForm);
+    </script>
+</body>
+
+</html>
